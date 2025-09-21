@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Q9 - Introduction</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+<div id="loading-screen">
+<div class="loading-content">
+<div class="loading-spinner"></div>
+<h2>Loading Q9's World...</h2>
+</div>
+</div>
+
+<nav class="navbar">
+<div class="nav-container">
+<div class="nav-logo">
+<span class="logo-text">Q<span class="logo-accent">9</span></span>
+</div>
+<div class="nav-menu" id="nav-menu">
+<a href="#home" class="nav-link active">Home</a>
+<a href="#about" class="nav-link">About</a>
+<a href="#games" class="nav-link">Games</a>
+<a href="#portfolio" class="nav-link">Portfolio</a>
+<a href="#contact" class="nav-link">Contact</a>
+</div>
+<div class="nav-toggle" id="nav-toggle">
+<span class="bar"></span>
+<span class="bar"></span>
+<span class="bar"></span>
+</div>
+</div>
+</nav>
+<section id="home" class="hero">
+<div class="hero-background">
+<div class="floating-particles" id="particles"></div>
+</div>
+
+<div class="hero-container">
+<div class="hero-avatar">
+<div class="avatar-glow"></div>
+<img src="https://i.imgur.com/5Z6pCRs.png" alt="Q9 Avatar" class="avatar">
+</div>
+
+<div class="hero-content">
+<h1 class="hero-title">
+Hi, I'm <span class="gradient-text">Q9</span>
+</h1>
+<div class="typing-container">
+<p class="typing-text" id="typing-text"></p>
+<span class="cursor" id="cursor">|</span>
+</div>
+
+<div class="hero-description" id="hero-description" style="display: none;">
+<p>🇨🇳 | 🇵🇭 | 🇯🇵</p>
+</div>
+
+<div class="hero-buttons">
+<button class="btn btn-primary" id="main-btn">
+<span>Discover More</span>
+<i class="fas fa-arrow-down"></i>
+</button>
+<button class="btn btn-secondary" id="theme-toggle">
+<i class="fas fa-moon"></i>
+</button>
+</div>
+
+<div class="social-links">
+<a href="https://www.tiktok.com/@_.q9vx" class="social-link" title="Tiktok">
+<i class="fab fa-tiktok"></i>
+</a>
+<a href="https://www.youtube.com/@LxstLucas" class="social-link" title="YouTube">
+<i class="fab fa-youtube"></i>
+</a>
+<a href="https://www.instagram.com/q9vxx" class="social-link" title="Instagram">
+<i class="fab fa-instagram"></i>
+</a>
+<a href="https://github.com/q9vx" class="social-link" title="GitHub">
+<i class="fab fa-github"></i>
+</a>
+</div>
+</div>
+</div>
+<div class="scroll-indicator">
+<div class="scroll-arrow"></div>
+</div>
+</section>
+
+  <section id="about" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">About Me</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="about-content">
+        <div class="about-text">
+          <p class="about-intro">Hey there! I'm <strong class="gradient-text">Q9</strong>, a passionate gamer, developer, and digital creator who loves bringing ideas to life through code and creativity.</p>
+
+          <div class="about-details">
+            <div class="detail-item">
+              <div class="detail-icon">
+                <i class="fas fa-gamepad"></i>
+              </div>
+              <div class="detail-text">
+                <h3>Gamer at Heart</h3>
+                <p>I spend countless hours exploring virtual worlds, conquering challenges, and connecting with gaming communities worldwide.</p>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <div class="detail-icon">
+                <i class="fas fa-code"></i>
+              </div>
+              <div class="detail-text">
+                <h3>Code Enthusiast</h3>
+                <p>From web development to game modding, I love turning creative ideas into functional, beautiful digital experiences.</p>
+              </div>
+            </div>
+
+            <div class="detail-item">
+              <div class="detail-icon">
+                <i class="fas fa-users"></i>
+              </div>
+              <div class="detail-text">
+                <h3>Community Builder</h3>
+                <p>Building connections and sharing experiences with like-minded people is what drives me to create and collaborate.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="about-stats">
+          <div class="stat-item">
+            <div class="stat-number" data-target="500">0</div>
+            <div class="stat-label">Hours Played</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="50">0</div>
+            <div class="stat-label">Projects Completed</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number" data-target="1000">0</div>
+            <div class="stat-label">Friends Made</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Games Section -->
+  <section id="games" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">My Gaming World</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="games-grid">
+        <div class="game-card">
+          <div class="game-image">
+            <div class="game-placeholder">
+              <i class="fas fa-gamepad"></i>
+            </div>
+          </div>
+          <div class="game-content">
+            <h3>Favorite Games</h3>
+            <p>Discover the games that have shaped my gaming journey and inspired my creativity.</p>
+            <div class="game-tags">
+              <span class="tag">Action</span>
+              <span class="tag">RPG</span>
+              <span class="tag">Strategy</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="game-card">
+          <div class="game-image">
+            <div class="game-placeholder">
+              <i class="fas fa-code"></i>
+            </div>
+          </div>
+          <div class="game-content">
+            <h3>Game Development</h3>
+            <p>Creating my own games and mods, bringing unique ideas to life in the gaming universe.</p>
+            <div class="game-tags">
+              <span class="tag">Unity</span>
+              <span class="tag">C#</span>
+              <span class="tag">Blender</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="game-card">
+          <div class="game-image">
+            <div class="game-placeholder">
+              <i class="fas fa-trophy"></i>
+            </div>
+          </div>
+          <div class="game-content">
+            <h3>Achievements</h3>
+            <p>Competing in tournaments, completing challenges, and reaching new milestones in gaming.</p>
+            <div class="game-tags">
+              <span class="tag">Esports</span>
+              <span class="tag">Tournaments</span>
+              <span class="tag">Records</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Section -->
+  <section id="portfolio" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">My Projects</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="portfolio-grid">
+        <div class="portfolio-item">
+          <div class="portfolio-image">
+            <div class="portfolio-placeholder">
+              <i class="fas fa-globe"></i>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <h3>Web Development</h3>
+            <p>Creating responsive, modern websites and web applications with cutting-edge technologies.</p>
+            <div class="portfolio-links">
+              <a href="#" class="portfolio-link">View Project</a>
+              <a href="#" class="portfolio-link">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio-item">
+          <div class="portfolio-image">
+            <div class="portfolio-placeholder">
+              <i class="fas fa-mobile-alt"></i>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <h3>Mobile Apps</h3>
+            <p>Developing cross-platform mobile applications that provide great user experiences.</p>
+            <div class="portfolio-links">
+              <a href="#" class="portfolio-link">View Project</a>
+              <a href="#" class="portfolio-link">GitHub</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="portfolio-item">
+          <div class="portfolio-image">
+            <div class="portfolio-placeholder">
+              <i class="fas fa-palette"></i>
+            </div>
+          </div>
+          <div class="portfolio-content">
+            <h3>Design Projects</h3>
+            <p>UI/UX design projects that combine aesthetics with functionality for optimal user experience.</p>
+            <div class="portfolio-links">
+              <a href="#" class="portfolio-link">View Project</a>
+              <a href="#" class="portfolio-link">GitHub</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="section-divider"></div>
+      </div>
+
+      <div class="contact-content">
+        <div class="contact-info">
+          <h3>Let's Connect!</h3>
+          <p>Whether you want to collaborate on a project, discuss gaming, or just say hello, I'd love to hear from you!</p>
+
+          <div class="contact-socials">
+            <a href="https://discord.gg/your-discord" class="contact-social">
+              <i class="fab fa-discord"></i>
+              <span>Discord</span>
+            </a>
+            <a href="https://twitter.com/your-twitter" class="contact-social">
+              <i class="fab fa-twitter"></i>
+              <span>Twitter</span>
+            </a>
+            <a href="https://github.com/q9vxx" class="contact-social">
+              <i class="fab fa-github"></i>
+              <span>GitHub</span>
+            </a>
+            <a href="mailto:your-email@example.com" class="contact-social">
+              <i class="fas fa-envelope"></i>
+              <span>Email</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <form id="contact-form">
+            <div class="form-group">
+              <input type="text" id="name" name="name" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+              <input type="email" id="email" name="email" placeholder="Your Email" required>
+            </div>
+            <div class="form-group">
+              <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <span>Send Message</span>
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-info">
+          <h3>Q9</h3>
+          <p>Gamer • Developer • Creator</p>
+        </div>
+        <div class="footer-socials">
+          <a href="#" class="footer-social"><i class="fab fa-discord"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-twitch"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-youtube"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="footer-social"><i class="fab fa-github"></i></a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
