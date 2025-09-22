@@ -419,6 +419,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     return;
                 }
 
+
+
                 // Save to Firebase Firestore with reCAPTCHA token
                 const timestamp = firebase.firestore.FieldValue.serverTimestamp();
                 await db.collection('contacts').add({
