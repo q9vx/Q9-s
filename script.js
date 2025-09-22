@@ -408,7 +408,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 try {
                     recaptchaToken = await new Promise((resolve, reject) => {
                         grecaptcha.ready(() => {
-                            grecaptcha.execute('6LfxZdErAAAAAH_atAHMogYtaU8UwbhmNMAuuOGz', { action: 'contact' })
+                            grecaptcha.execute('6LfenNErAAAAAN8PVNwE5GoWnlcTDj5Xvhbi6HqW', { action: 'contact' })
                                 .then(token => resolve(token))
                                 .catch(error => reject(error));
                         });
