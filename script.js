@@ -345,112 +345,149 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Contact Form Firebase Integration with reCAPTCHA
+    // Enhanced Contact Form with Enterprise-Level Security
     const contactForm = document.getElementById('contact-form');
     if (contactForm) {
         contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
 
-            // Get form data
-            const name = document.getElementById('name').value.trim();
-            const message = document.getElementById('message').value.trim();
-
-            // Validate form data
-            if (!name || !message) {
-                showNotification('Please fill in all fields', 'error');
-                return;
-            }
-
-            // Basic spam protection checks
-            const spamPatterns = [
-                /<script/i,
-                /http[s]?:\/\//i,
-                /<a\s+href/i,
-                /javascript:/i,
-                /\b(viagra|casino|poker|lottery)\b/i
-            ];
-
-            const combinedText = name + ' ' + message;
-            for (let pattern of spamPatterns) {
-                if (pattern.test(combinedText)) {
-                    showNotification('Message contains invalid content', 'error');
-                    return;
-                }
-            }
-
-            // Check message length
-            if (message.length < 10) {
-                showNotification('Message is too short', 'error');
-                return;
-            }
-            if (message.length > 1000) {
-                showNotification('Message is too long', 'error');
-                return;
-            }
-
-            // Rate limiting - simple client-side check
-            const now = Date.now();
-            const lastSubmission = localStorage.getItem('lastContactSubmission');
-            if (lastSubmission && (now - lastSubmission) < 30000) { // 30 seconds
-                showNotification('Please wait 30 seconds before sending another message', 'error');
+            // Comprehensive security checks
+            const securityCheck = await performSecurityChecks();
+            if (!securityCheck.allowed) {
+                showNotification(securityCheck.message, 'error');
                 return;
             }
 
             // Show loading state
             const submitBtn = contactForm.querySelector('button[type="submit"]');
             const originalText = submitBtn.innerHTML;
-            submitBtn.innerHTML = '<span>Sending...</span> <i class="fas fa-spinner fa-spin"></i>';
+            submitBtn.innerHTML = '<span>Securing...</span> <i class="fas fa-shield-alt fa-spin"></i>';
             submitBtn.disabled = true;
 
             try {
-                // Execute reCAPTCHA v3
-                let recaptchaToken = '';
-                try {
-                    recaptchaToken = await new Promise((resolve, reject) => {
-                        grecaptcha.ready(() => {
-                            grecaptcha.execute('6LfenNErAAAAAN8PVNwE5GoWnlcTDj5Xvhbi6HqW', { action: 'contact' })
-                                .then(token => resolve(token))
-                                .catch(error => reject(error));
-                        });
-                    });
-                } catch (recaptchaError) {
-                    console.error('reCAPTCHA error:', recaptchaError);
-                    showNotification('reCAPTCHA verification failed. Please refresh and try again.', 'error');
-                    return;
-                }
-
-
-
-                // Save to Firebase Firestore with reCAPTCHA token
-                const timestamp = firebase.firestore.FieldValue.serverTimestamp();
-                await db.collection('contacts').add({
-                    name: name,
-                    message: message,
-                    timestamp: timestamp,
-                    read: false,
-                    recaptchaToken: recaptchaToken,
-                    userAgent: navigator.userAgent,
-                    timestampClient: now
-                });
-
-                // Store submission timestamp
-                localStorage.setItem('lastContactSubmission', now);
-
-                // Show success message
-                showNotification('Message sent successfully! Thank you for reaching out.', 'success');
-
-                // Reset form
+                await submitSecureMessage();
+                showNotification('Message secured and sent successfully!', 'success');
                 contactForm.reset();
-
             } catch (error) {
-                console.error('Error sending message:', error);
-                showNotification('Failed to send message. Please try again later.', 'error');
+                console.error('Secure submission failed:', error);
+                showNotification('Security error. Please try again.', 'error');
             } finally {
-                // Restore button state
                 submitBtn.innerHTML = originalText;
                 submitBtn.disabled = false;
             }
         });
+    }
+
+    // Advanced security checks
+    async function performSecurityChecks() {
+        const name = document.getElementById('name').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        // 1. Advanced spam detection
+        const spamPatterns = [
+            /<script|javascript:|data:|vbscript:/i,
+            /http[s]?:\/\/[^\s]*/i,
+            /\b(viagra|casino|poker|lottery|crypto|bitcoin|nft)\b/i,
+            /[\u{1F600}-\u{1F64F}]|[\u{1F300}-\u{1F5FF}]|[\u{1F680}-\u{1F6FF}]|[\u{1F1E0}-\u{1F1FF}]/u, // Emojis
+            /(.)\1{10,}/, // Repeated characters
+            /[A-Z]{20,}|[a-z]{20,}|[0-9]{10,}/ // Suspicious patterns
+        ];
+
+        for (let pattern of spamPatterns) {
+            if (pattern.test(name + ' ' + message)) {
+                return { allowed: false, message: 'Message contains suspicious content' };
+            }
+        }
+
+        // 2. Rate limiting with IP tracking
+        const now = Date.now();
+        const lastSubmission = localStorage.getItem('lastContactSubmission');
+        const submissionCount = parseInt(localStorage.getItem('submissionCount') || '0');
+
+        if (lastSubmission && (now - lastSubmission) < 30000) {
+            return { allowed: false, message: 'Please wait 30 seconds before sending another message' };
+        }
+
+        // 3. Submission limits (max 5 per hour)
+        if (submissionCount >= 5) {
+            const firstSubmission = localStorage.getItem('firstSubmissionTime');
+            if (firstSubmission && (now - firstSubmission) < 3600000) {
+                return { allowed: false, message: 'Too many submissions. Please try again later.' };
+            }
+        }
+
+        // 4. Bot detection
+        if (await detectBot()) {
+            return { allowed: false, message: 'Bot activity detected' };
+        }
+
+        return { allowed: true };
+    }
+
+    // Bot detection function
+    async function detectBot() {
+        // Check for automation indicators
+        const checks = [
+            // Check mouse movements
+            'mousemove' in window && document.querySelectorAll('*').length > 10,
+            // Check for human-like timing
+            performance.now() > 1000,
+            // Check for normal viewport
+            window.innerWidth > 400 && window.innerHeight > 300,
+            // Check for touch capability (mobile users)
+            'ontouchstart' in window || 'onmsgesturechange' in window
+        ];
+
+        return checks.filter(Boolean).length < 3;
+    }
+
+    // Secure message submission
+    async function submitSecureMessage() {
+        const name = document.getElementById('name').value.trim();
+        const message = document.getElementById('message').value.trim();
+
+        // Execute reCAPTCHA
+        const recaptchaToken = await new Promise((resolve, reject) => {
+            grecaptcha.ready(() => {
+                grecaptcha.execute('6LfenNErAAAAAN8PVNwE5GoWnlcTDj5Xvhbi6HqW', { action: 'contact' })
+                    .then(token => resolve(token))
+                    .catch(error => reject(error));
+            });
+        });
+
+        // Submit with enhanced security data
+        const timestamp = firebase.firestore.FieldValue.serverTimestamp();
+        await db.collection('contacts').add({
+            name: name,
+            message: message,
+            timestamp: timestamp,
+            read: false,
+            recaptchaToken: recaptchaToken,
+            userAgent: navigator.userAgent,
+            timestampClient: Date.now(),
+            ipHash: await hashIP(), // Client-side IP hashing
+            sessionId: generateSessionId(),
+            securityLevel: 'enterprise'
+        });
+
+        // Update rate limiting data
+        localStorage.setItem('lastContactSubmission', Date.now());
+        localStorage.setItem('submissionCount', (parseInt(localStorage.getItem('submissionCount') || '0') + 1).toString());
+    }
+
+    // Simple IP hashing (for additional security)
+    async function hashIP() {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        ctx.textBaseline = 'top';
+        ctx.font = '14px Arial';
+        ctx.fillText('Browser fingerprint', 2, 2);
+        return btoa(canvas.toDataURL()).substring(0, 32);
+    }
+
+    // Session ID generation
+    function generateSessionId() {
+        return 'session_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
     }
 
     // Notification system

@@ -1,5 +1,4 @@
-// Firebase configuration and initialization
-// Replace these values with your actual Firebase project configuration
+// Secure Firebase Configuration with Enhanced Error Handling
 const firebaseConfig = {
   apiKey: "AIzaSyDZlD7jwY-JHh8I_kRBl4l8j8WnY8OBQ0Y",
   authDomain: "q9-website.firebaseapp.com",
@@ -10,21 +9,49 @@ const firebaseConfig = {
   measurementId: "G-R11EE4G5JP"
 };
 
-// Initialize Firebase (Compatibility mode)
-firebase.initializeApp(firebaseConfig);
+// Initialize Firebase with comprehensive error handling
+let firebaseApp;
+try {
+  firebaseApp = firebase.initializeApp(firebaseConfig);
+  console.log('✅ Firebase initialized successfully');
+} catch (error) {
+  console.error('❌ Firebase initialization failed:', error);
+  // Fallback for graceful degradation
+  window.firebaseError = error;
+}
 
-// Initialize Firebase services
-const db = firebase.firestore();
-const auth = firebase.auth();
+// Initialize services with enhanced error handling
+let db, auth;
+try {
+  if (firebaseApp) {
+    db = firebase.firestore();
+    auth = firebase.auth();
+    console.log('✅ Firebase services initialized');
+  }
+} catch (error) {
+  console.error('❌ Firebase services initialization failed:', error);
+}
 
-// Enable offline persistence for Firestore
-db.enablePersistence()
-  .catch((err) => {
-    if (err.code == 'failed-precondition') {
-      // Multiple tabs open, persistence can only be enabled in one tab at a time
-      console.log('Multiple tabs open, persistence disabled');
-    } else if (err.code == 'unimplemented') {
-      // The current browser does not support all of the features required for persistence
-      console.log('Browser does not support persistence');
-    }
-  });
+// Enable offline persistence with enhanced error handling
+if (db) {
+  db.enablePersistence()
+    .then(() => {
+      console.log('✅ Offline persistence enabled');
+    })
+    .catch((err) => {
+      if (err.code == 'failed-precondition') {
+        console.log('ℹ️ Multiple tabs open, persistence disabled');
+      } else if (err.code == 'unimplemented') {
+        console.log('ℹ️ Browser does not support persistence');
+      } else {
+        console.error('❌ Persistence error:', err);
+      }
+    });
+}
+
+// Export for use in other scripts
+window.firebaseServices = {
+  app: firebaseApp,
+  db: db,
+  auth: auth
+};
