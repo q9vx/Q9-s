@@ -3,275 +3,329 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Q9 - Introduction</title>
+<title>q9 — Developer Portfolio</title>
 <link rel="stylesheet" href="style.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
+
 <div id="loading-screen">
-<div class="loading-content">
-<div class="loading-spinner"></div>
-<h2>Loading Q9's World...</h2>
-</div>
+  <div class="loading-content">
+    <div class="loading-spinner"></div>
+    <h2>compiling q9.portfolio<span class="blink-dot">_</span></h2>
+  </div>
 </div>
 
+<!-- Editor tab bar acts as the site nav -->
 <nav class="navbar">
-<div class="nav-container">
-<div class="nav-logo">
-<span class="logo-text">Q<span class="logo-accent">9</span></span>
-</div>
-<div class="nav-menu" id="nav-menu">
-<a href="#home" class="nav-link active">Home</a>
-<a href="#about" class="nav-link">About</a>
-<a href="#games" class="nav-link">World</a>
-<a href="#contact" class="nav-link">Contact</a>
-</div>
-<div class="nav-toggle" id="nav-toggle">
-<span class="bar"></span>
-<span class="bar"></span>
-<span class="bar"></span>
-</div>
-</div>
+  <div class="tabbar" id="nav-menu">
+    <a href="#home" class="tab active" data-target="home"><i class="fa-regular fa-file-code"></i>index.html</a>
+    <a href="#about" class="tab" data-target="about"><i class="fa-brands fa-js"></i>about.js</a>
+    <a href="#skills" class="tab" data-target="skills"><i class="fa-regular fa-file-lines"></i>skills.json</a>
+    <a href="#projects" class="tab" data-target="projects"><i class="fa-brands fa-markdown"></i>projects.md</a>
+    <a href="#explore" class="tab" data-target="explore"><i class="fa-regular fa-file"></i>explore.txt</a>
+    <a href="#contact" class="tab" data-target="contact"><i class="fa-solid fa-terminal"></i>contact.sh</a>
+  </div>
+  <div class="nav-toggle" id="nav-toggle">
+    <span class="bar"></span>
+    <span class="bar"></span>
+    <span class="bar"></span>
+  </div>
 </nav>
+
+<!-- HOME -->
 <section id="home" class="hero">
-<div class="hero-background">
-<div class="floating-particles" id="particles"></div>
-</div>
+  <div class="hero-grid-bg"></div>
 
-<div class="hero-container">
-<div class="hero-avatar">
-<div class="avatar-glow"></div>
-<img src="q92.jpg" alt="Q9 Avatar" class="avatar">
-</div>
+  <div class="hero-container">
+    <div class="terminal-window">
+      <div class="terminal-titlebar">
+        <span class="dot dot-red"></span>
+        <span class="dot dot-amber"></span>
+        <span class="dot dot-green"></span>
+        <span class="terminal-path">q9@portfolio — zsh</span>
+      </div>
+      <div class="terminal-body">
+        <p class="term-line"><span class="prompt">➜</span> <span class="term-cmd">whoami</span></p>
+        <div class="hero-identity">
+          <img src="q92.jpg" alt="q9 avatar" class="avatar">
+          <div>
+            <h1 class="hero-title">q9</h1>
+            <p class="hero-roles">Frontend Developer <span class="sep">·</span> Backend Explorer <span class="sep">·</span> System Analyst <span class="sep">·</span> Game Developer</p>
+          </div>
+        </div>
+        <p class="term-line"><span class="prompt">➜</span> <span class="term-cmd">cat mission.txt</span></p>
+        <div class="typing-container">
+          <span class="typing-text" id="typing-text"></span><span class="cursor" id="cursor">▍</span>
+        </div>
+      </div>
+    </div>
 
-<div class="hero-content">
-<h1 class="hero-title">
-Hi, I'm <span class="gradient-text">Q9</span>
-</h1>
-<div class="typing-container">
-<p class="typing-text" id="typing-text"></p>
-<span class="cursor" id="cursor">|</span>
-</div>
+    <div class="hero-buttons">
+      <button class="btn btn-primary" id="main-btn">
+        <span>cd ./about</span>
+        <i class="fas fa-arrow-down"></i>
+      </button>
+      <button class="btn btn-secondary" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
 
-<div class="hero-description" id="hero-description" style="display: none;">
-<p>🇨🇳 | 🇵🇭 | 🇯🇵</p>
-</div>
+    <div class="social-links">
+      <a href="https://www.tiktok.com/@_.q9vx" class="social-link" title="TikTok"><i class="fab fa-tiktok"></i></a>
+      <a href="https://www.youtube.com/@LxstLucas" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
+      <a href="https://www.instagram.com/q9vxx" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
+      <a href="https://github.com/q9vx" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
+    </div>
+  </div>
 
-<div class="hero-buttons">
-<button class="btn btn-primary" id="main-btn">
-<span>Discover More</span>
-<i class="fas fa-arrow-down"></i>
-</button>
-<button class="btn btn-secondary" id="theme-toggle">
-<i class="fas fa-moon"></i>
-</button>
-</div>
-
-<div class="social-links">
-<a href="https://www.tiktok.com/@_.q9vx" class="social-link" title="Tiktok">
-<i class="fab fa-tiktok"></i>
-</a>
-<a href="https://www.youtube.com/@LxstLucas" class="social-link" title="YouTube">
-<i class="fab fa-youtube"></i>
-</a>
-<a href="https://www.instagram.com/q9vxx" class="social-link" title="Instagram">
-<i class="fab fa-instagram"></i>
-</a>
-<a href="https://github.com/q9vx" class="social-link" title="GitHub">
-<i class="fab fa-github"></i>
-</a>
-</div>
-</div>
-</div>
-<div class="scroll-indicator">
-<div class="scroll-arrow"></div>
-</div>
+  <div class="scroll-indicator">
+    <div class="scroll-arrow"></div>
+  </div>
 </section>
 
-  <section id="about" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">About Me</h2>
-        <div class="section-divider"></div>
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="file-header">
+      <span class="file-tag">about.js</span>
+      <span class="file-dim">// who is q9</span>
+    </div>
+
+    <div class="about-content">
+      <div class="code-block about-code">
+        <p class="code-line"><span class="ln">1</span><span class="kw">const</span> <span class="var">q9</span> = {</p>
+        <p class="code-line"><span class="ln">2</span>&nbsp;&nbsp;<span class="prop">role</span>: <span class="str">"Frontend Developer, Backend Explorer, System Analyst, Game Developer"</span>,</p>
+        <p class="code-line"><span class="ln">3</span>&nbsp;&nbsp;<span class="prop">bio</span>: <span class="str">"Crafts clean, responsive interfaces while diving into backend logic and database analysis."</span>,</p>
+        <p class="code-line"><span class="ln">4</span>&nbsp;&nbsp;<span class="prop">drive</span>: <span class="str">"Solving problems through code, exploring system design, and continuously learning new technologies."</span>,</p>
+        <p class="code-line"><span class="ln">5</span>&nbsp;&nbsp;<span class="prop">status</span>: <span class="str">"actively building"</span></p>
+        <p class="code-line"><span class="ln">6</span>};</p>
       </div>
 
-      <div class="about-content">
-        <div class="about-text">
-          <p class="about-intro">Hey there! I'm <strong class="gradient-text">Q9</strong>, a student with a passion for academics, problem-solving, and continuous learning.</p>
-
-          <div class="about-details">
-            <div class="detail-item">
-              <div class="detail-icon">
-                <i class="fas fa-book"></i>
-              </div>
-              <div class="detail-text">
-                <h3>Academic Growth</h3>
-                <p>I enjoy exploring different fields of study, strengthening my knowledge, and applying what I learn to real-world situations.</p>
-              </div>
-            </div>
-
-            <div class="detail-item">
-              <div class="detail-icon">
-                <i class="fas fa-code"></i>
-              </div>
-              <div class="detail-text">
-                <h3>Coding as a Tool</h3>
-                <p>I use programming not just for projects, but as a way to sharpen my logical thinking and create solutions that support learning and productivity.</p>
-              </div>
-            </div>
-
-            <div class="detail-item">
-              <div class="detail-icon">
-                <i class="fas fa-users"></i>
-              </div>
-              <div class="detail-text">
-                <h3>Collaborative Learner</h3>
-                <p>I value teamwork, idea-sharing, and building connections that make learning more meaningful and impactful.</p>
-              </div>
-            </div>
+      <div class="about-details">
+        <div class="detail-item">
+          <div class="detail-icon"><i class="fas fa-code"></i></div>
+          <div class="detail-text">
+            <h3>Frontend Craft</h3>
+            <p>Builds clean, responsive interfaces that feel considered, not just functional.</p>
           </div>
         </div>
-
-        <div class="about-stats">
-          <div class="stat-item">
-            <div class="stat-number" data-target="7">7</div>
-            <div class="stat-label">Projects Completed</div>
+        <div class="detail-item">
+          <div class="detail-icon"><i class="fas fa-server"></i></div>
+          <div class="detail-text">
+            <h3>Backend & Data</h3>
+            <p>Explores backend logic and database design, from schemas to system architecture.</p>
           </div>
-          <div class="stat-item">
-            <div class="stat-number" data-target="14">14</div>
-            <div class="stat-label">Coding Hours Logged</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number" data-target="3">3</div>
-            <div class="stat-label">Coding Hours Logged</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-icon"><i class="fas fa-gamepad"></i></div>
+          <div class="detail-text">
+            <h3>Game Development</h3>
+            <p>Brings systems thinking into playable spaces, prototyping mechanics and worlds.</p>
           </div>
         </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section id="games" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">My World</h2>
-        <div class="section-divider"></div>
+<!-- SKILLS -->
+<section id="skills" class="section section-alt">
+  <div class="container">
+    <div class="file-header">
+      <span class="file-tag">skills.json</span>
+      <span class="file-dim">// technical stack</span>
+    </div>
+
+    <div class="skills-json">
+      <p class="json-line json-brace">{</p>
+
+      <div class="json-group">
+        <p class="json-line"><span class="ln">01</span><span class="jkey">"frontend"</span>: [</p>
+        <div class="json-tags">
+          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">React</span>
+        </div>
+        <p class="json-line"><span class="ln">02</span>],</p>
       </div>
 
-      <div class="games-grid">
-        <div class="game-card">
-          <div class="game-image">
-            <div class="game-placeholder">
-              <i class="fas fa-gamepad"></i>
-            </div>
-          </div>
-          <div class="game-content">
-            <h3>Favorite Games</h3>
-            <p>Explore the games that have defined my journey, fueling both my passion for play and my drive for creativity.</p>
-            <div class="game-tags">
-              <span class="tag">Action</span>
-              <span class="tag">Horror</span>
-              <span class="tag">Strategy</span>
-            </div>
-          </div>
+      <div class="json-group">
+        <p class="json-line"><span class="ln">03</span><span class="jkey">"backend"</span>: [</p>
+        <div class="json-tags">
+          <span class="tag">Node.js</span><span class="tag">Express</span>
         </div>
+        <p class="json-line"><span class="ln">04</span>],</p>
+      </div>
 
-        <div class="game-card">
-          <div class="game-image">
-            <div class="game-placeholder">
-              <i class="fas fa-code"></i>
-            </div>
-          </div>
-          <div class="game-content">
-            <h3>Web Development</h3>
-            <p>Creating my own games and mods, bringing unique ideas to life in the gaming universe.</p>
-            <div class="game-tags">
-  <span class="tag">HTML</span>
-  <span class="tag">CSS</span>
-  <span class="tag">JavaScript</span>
-  <span class="tag">Node.js</span>
-  <span class="tag">Git</span>
-            </div>
-          </div>
+      <div class="json-group">
+        <p class="json-line"><span class="ln">05</span><span class="jkey">"databases"</span>: [</p>
+        <div class="json-tags">
+          <span class="tag">MySQL</span><span class="tag">Firebase</span><span class="tag">Netlify</span><span class="tag">Vercel</span>
         </div>
+        <p class="json-line"><span class="ln">06</span>],</p>
+      </div>
 
-<div class="game-card">
-  <div class="game-image">
-    <div class="game-placeholder">
-      <i class="fas fa-graduation-cap"></i>
+      <div class="json-group">
+        <p class="json-line"><span class="ln">07</span><span class="jkey">"tools"</span>: [</p>
+        <div class="json-tags">
+          <span class="tag">Git</span><span class="tag">VS Code</span>
+        </div>
+        <p class="json-line"><span class="ln">08</span>]</p>
+      </div>
+
+      <p class="json-line json-brace">}</p>
     </div>
   </div>
-  <div class="game-content">
-    <h3>Academic Achievements</h3>
-    <p>Participating in school activities, excelling in coursework, and achieving milestones in academics.</p>
-    <div class="game-tags">
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="section">
+  <div class="container">
+    <div class="file-header">
+      <span class="file-tag">projects.md</span>
+      <span class="file-dim"># featured work</span>
+    </div>
+
+    <div class="games-grid">
+      <a class="game-card" href="https://sdo-navotasappointments.netlify.app" target="_blank" rel="noopener noreferrer">
+        <div class="game-image"><div class="game-placeholder"><i class="fas fa-calendar-check"></i></div></div>
+        <div class="game-content">
+          <span class="repo-name">Appointment-System-SDO-Navotas <i class="fas fa-arrow-up-right-from-square repo-link-icon"></i></span>
+          <p>A web-based appointment system concept for streamlined scheduling.</p>
+          <div class="game-tags"><span class="tag">Web App</span><span class="tag">Scheduling</span></div>
+        </div>
+      </a>
+
+      <a class="game-card" href="https://loafyhungarianroll.netlify.app/" target="_blank" rel="noopener noreferrer">
+        <div class="game-image"><div class="game-placeholder"><i class="fas fa-bread-slice"></i></div></div>
+        <div class="game-content">
+          <span class="repo-name">LOAFY'S HUNGARIAN ROLL <i class="fas fa-arrow-up-right-from-square repo-link-icon"></i></span>
+          <p>Branding and business presentation site showcasing product identity.</p>
+          <div class="game-tags"><span class="tag">Branding</span><span class="tag">Business</span></div>
+        </div>
+      </a>
+
+      <a class="game-card" href="https://smolmoonva-site.netlify.app/" target="_blank" rel="noopener noreferrer">
+        <div class="game-image"><div class="game-placeholder"><i class="fas fa-user"></i></div></div>
+        <div class="game-content">
+          <span class="repo-name">SMOLMOONVA-SITE <i class="fas fa-arrow-up-right-from-square repo-link-icon"></i></span>
+          <p>Personal portfolio built with modern web technologies.</p>
+          <div class="game-tags"><span class="tag">Portfolio</span></div>
+        </div>
+      </a>
+
+      <a class="game-card" href="https://vaultscripts.vercel.app/" target="_blank" rel="noopener noreferrer">
+        <div class="game-image"><div class="game-placeholder"><i class="fas fa-shield-halved"></i></div></div>
+        <div class="game-content">
+          <span class="repo-name">VAULTSCRIPT <i class="fas fa-arrow-up-right-from-square repo-link-icon"></i></span>
+          <p>A free, secured anti-bypass protection for links — encrypted destinations, real-time alerts, zero cost.</p>
+          <div class="game-tags"><span class="tag">Security</span><span class="tag">Free</span></div>
+        </div>
+      </a>
     </div>
   </div>
-</div>
-  </section>
+</section>
 
-  <section id="contact" class="section">
-    <div class="container">
-      <div class="section-header">
-        <h2 class="section-title">Get In Touch</h2>
-        <div class="section-divider"></div>
+<!-- CURRENTLY EXPLORING + QUOTE -->
+<section id="explore" class="section section-alt">
+  <div class="container">
+    <div class="file-header">
+      <span class="file-tag">explore.txt</span>
+      <span class="file-dim"># currently exploring</span>
+    </div>
+
+    <ul class="explore-list">
+      <li><span class="ln">01</span><i class="fa-regular fa-square"></i> Advanced React patterns and performance optimization</li>
+      <li><span class="ln">02</span><i class="fa-regular fa-square"></i> API integration and backend scalability</li>
+      <li><span class="ln">03</span><i class="fa-regular fa-square"></i> Data visualization and analytics for smarter insights</li>
+      <li><span class="ln">04</span><i class="fa-regular fa-square"></i> Game development</li>
+    </ul>
+
+    <div class="quote-block">
+      <p>/* Code is not just logic — it's creativity expressed in syntax. */</p>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container">
+    <div class="file-header">
+      <span class="file-tag">contact.sh</span>
+      <span class="file-dim"># get in touch</span>
+    </div>
+
+    <div class="contact-content">
+      <div class="contact-info">
+        <p class="term-line"><span class="prompt">➜</span> <span class="term-cmd">echo "let's connect"</span></p>
+        <p>Whether you want to collaborate on a project, discuss game dev, or just say hello — I'd love to hear from you.</p>
+        <div class="contact-socials">
+          <a href="https://github.com/q9vx" class="contact-social"><i class="fab fa-github"></i> github.com/q9vx</a>
+          <a href="https://www.instagram.com/q9vxx" class="contact-social"><i class="fab fa-instagram"></i> @q9vxx</a>
+          <a href="https://www.tiktok.com/@_.q9vx" class="contact-social"><i class="fab fa-tiktok"></i> @_.q9vx</a>
+          <a href="https://www.youtube.com/@LxstLucas" class="contact-social"><i class="fab fa-youtube"></i> LxstLucas</a>
+        </div>
       </div>
 
-      <div class="contact-content">
-        <div class="contact-info">
-          <h3>Let's Connect!</h3>
-          <p>Whether you want to collaborate on a project, discuss gaming, or just say hello, I'd love to hear from you!</p>
-          <div class="contact-socials">
+      <div class="contact-form">
+        <form id="contact-form">
+          <div class="form-group">
+            <label for="name">// name</label>
+            <input type="text" id="name" name="name" placeholder="Your name" required>
+          </div>
+          <div class="form-group">
+            <label for="message">// message</label>
+            <textarea id="message" name="message" placeholder="Your message" rows="5" required></textarea>
+          </div>
 
-        <div class="contact-form">
-          <form id="contact-form">
-            <div class="form-group">
-              <input type="text" id="name" name="name" placeholder="Your Name" required>
-            </div>
-            <div class="form-group">
-              <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-            </div>
-            <button type="submit" class="btn btn-primary">
-              <span>Send Message</span>
-              <i class="fas fa-paper-plane"></i>
-            </button>
-          </form>
-        </div>
+          <!-- Honeypot: hidden from real visitors, bots tend to fill every field -->
+          <div class="form-group form-hp" aria-hidden="true">
+            <label for="website">Website</label>
+            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
+          </div>
+
+          <button type="submit" class="btn btn-primary">
+            <span>send()</span>
+            <i class="fas fa-paper-plane"></i>
+          </button>
+          <p class="form-status" id="form-status"></p>
+        </form>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="footer">
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-info">
-          <h3>Q9</h3>
-          <p>Academics • Developing • Gaming</p>
-        </div>
-        <div class="footer-socials">
-          <a href="https://www.tiktok.com/@_.q9vx" class="footer-social"><i class="fab fa-tiktok"></i></a>
-          <a href="https://www.youtube.com/@LxstLucas" class="footer-social"><i class="fab fa-youtube"></i></a>
-          <a href="https://www.instagram.com/q9vxx" class="footer-social"><i class="fab fa-instagram"></i></a>
-          <a href="https://github.com/q9vx" class="footer-social"><i class="fab fa-github"></i></a>
-        </div>
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-info">
+        <h3>q9</h3>
+        <p>Frontend · Backend · Systems · Games</p>
+      </div>
+      <div class="footer-socials">
+        <a href="https://www.tiktok.com/@_.q9vx" class="footer-social"><i class="fab fa-tiktok"></i></a>
+        <a href="https://www.youtube.com/@LxstLucas" class="footer-social"><i class="fab fa-youtube"></i></a>
+        <a href="https://www.instagram.com/q9vxx" class="footer-social"><i class="fab fa-instagram"></i></a>
+        <a href="https://github.com/q9vx" class="footer-social"><i class="fab fa-github"></i></a>
       </div>
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <!-- Firebase SDK (Compatibility mode) -->
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
+<!-- Firebase SDK (Compatibility mode) -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
 
-  <!-- reCAPTCHA v3 -->
-  <script src="https://www.google.com/recaptcha/enterprise.js?render=6LfenNErAAAAAN8PVNwE5GoWnlcTDj5Xvhbi6HqW"></script>
+<!-- reCAPTCHA v3 -->
+<script src="https://www.google.com/recaptcha/enterprise.js?render=6LfenNErAAAAAN8PVNwE5GoWnlcTDj5Xvhbi6HqW"></script>
 
-  <!-- Firebase configuration -->
-  <script src="firebase-config.js"></script>
+<!-- Firebase configuration -->
+<script src="firebase-config.js"></script>
 
-  <script src="script.js"></script>
+<script src="script.js"></script>
 </body>
 </html>

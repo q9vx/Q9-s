@@ -16,8 +16,30 @@ try {
   console.log('✅ Firebase initialized successfully');
 } catch (error) {
   console.error('❌ Firebase initialization failed:', error);
-  // Fallback for graceful degradation
   window.firebaseError = error;
+}
+
+// ---------------------------------------------------------------------
+// App Check — verifies requests are coming from your real site before
+// Firestore accepts them. Uses the same reCAPTCHA Enterprise key that's
+// already loaded on the page for the contact form.
+//
+// NOTE: this only takes effect once you've registered this site key
+// under Firebase Console → Build → App Check → Apps, and it only
+// *enforces* once you flip Firestore to "Enforced" in that same screen.
+// Until then it runs in the background and does nothing harmful.
+// ---------------------------------------------------------------------
+try {
+  if (firebaseApp && firebase.appCheck) {
+    const appCheck = firebase.appCheck();
+    appCheck.activate(
+      new firebase.appCheck.ReCaptchaEnterpriseProvider('6LfenNErAAAAAN8PVNwE5GoWnlcTDj5Xvhbi6HqW'),
+      true // auto-refresh the App Check token
+    );
+    console.log('✅ App Check activated');
+  }
+} catch (error) {
+  console.error('❌ App Check activation failed:', error);
 }
 
 // Initialize services with enhanced error handling
