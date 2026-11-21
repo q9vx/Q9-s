@@ -478,145 +478,16 @@
     setTimeout(stepRole, 2200);
   }
 
-  /* Project Case-Study Modal */
-  var PROJECTS = {
-    sdo: {
-      idx: 'PROJECT 01',
-      title: 'Appointment-System-SDO-Navotas',
-      url: 'sdo-navotasappointments.netlify.app',
-      live: 'https://sdo-navotasappointments.netlify.app/',
-      img: 'https://s0.wp.com/mshots/v1/https%3A%2F%2Fsdo-navotasappointments.netlify.app%2F?w=800&h=450',
-      role: 'Role: Frontend & Admin Dashboard UI',
-      problem: 'Walk-in queues and manual appointment scheduling created bottlenecks and unclear slot availability for visitors coordinating with SDO Navotas.',
-      solution: 'Designed a step-by-step online booking interface paired with a structured administrator view for managing schedules, tracking appointments, and exporting records cleanly.',
-      stack: ['HTML5', 'CSS3', 'JavaScript', 'Cloud Backend', 'Netlify', 'Responsive UI']
-    },
-    loafys: {
-      idx: 'PROJECT 02',
-      title: "LOAFY'S HUNGARIAN ROLL",
-      url: 'loafyhungarianroll.netlify.app',
-      live: 'https://loafyhungarianroll.netlify.app/',
-      img: 'https://s0.wp.com/mshots/v1/https%3A%2F%2Floafyhungarianroll.netlify.app%2F?w=800&h=450',
-      role: 'Role: Web Design & Frontend Development',
-      problem: 'The business needed an accessible digital storefront to showcase menu offerings and brand identity beyond scattered social media posts.',
-      solution: 'Built a fast, mobile-first promotional site with clear visual hierarchy, appetizing product presentation, and direct ordering/inquiry pathways.',
-      stack: ['HTML5', 'CSS3', 'JavaScript', 'Visual Graphic Design', 'Netlify']
-    },
-    smolmoonva: {
-      idx: 'PROJECT 03',
-      title: 'SMOLMOONVA-SITE',
-      url: 'smolmoonva-site.netlify.app',
-      live: 'https://smolmoonva-site.netlify.app/',
-      img: 'https://s0.wp.com/mshots/v1/https%3A%2F%2Fsmolmoonva-site.netlify.app%2F?w=800&h=450',
-      role: 'Role: UI/UX & Personal Brand Site',
-      problem: 'Needed a cohesive personal hub that reflects a distinct visual aesthetic while keeping navigation effortless across desktop and mobile screens.',
-      solution: 'Crafted a custom-styled personal brand website focusing on typography, balanced negative space, and smooth responsive layouts.',
-      stack: ['HTML5', 'CSS3', 'JavaScript', 'UI/UX Design', 'Netlify']
-    },
-    vaultscript: {
-      idx: 'PROJECT 04',
-      title: 'VAULTSCRIPT',
-      url: 'vaultscripts.vercel.app',
-      live: 'https://vaultscripts.vercel.app/',
-      img: 'https://s0.wp.com/mshots/v1/https%3A%2F%2Fvaultscripts.vercel.app%2F?w=800&h=450',
-      role: 'Role: Full-Stack Web App & Deployment',
-      problem: 'Creators needed a streamlined, secure portal to configure credentials and manage protected script links without a cluttered workflow.',
-      solution: 'Co-developed a dark-themed web portal hosted on Vercel with authenticated user flows, clean form validation, and fast edge delivery.',
-      stack: ['HTML/CSS/JS', 'Firebase Auth', 'Vercel', 'API Routes', 'Dark UI']
-    },
-    quantum: {
-      idx: 'CONTRIBUTION 05',
-      title: '[Q]uantum — Game Contributor & QA Tester',
-      url: 'roblox.com/communities/36030195/Q-uantum',
-      live: 'https://www.roblox.com/communities/36030195/Q-uantum#!/about',
-      img: 'assets/quantum.webp',
-      role: 'Role: Contributor Rank & Pre-Release QA Tester',
-      problem: 'High-traffic Roblox experiences (8.8M+ visits, 18.3K+ community members) require thorough pre-release testing to catch gameplay bugs, UI edge cases, and balance issues before public updates.',
-      solution: 'Collaborated with the development team under the official Contributor Rank to stress-test mechanics, report reproducible bugs, and verify UI/gameplay polish across live updates.',
-      stack: ['QA & Bug Reproduction', 'Roblox Studio / Client', 'Pre-Release Testing', '8.8M+ Visits', '18.3K+ Members']
-    }
-  };
-
-  var pmodal = d.getElementById('pmodal');
-  var pmClose = d.getElementById('pm-close');
-  var lastTrigger = null;
-
-  function openProjectModal(key, triggerEl) {
-    var data = PROJECTS[key];
-    if (!pmodal || !data) return;
-
-    lastTrigger = triggerEl || d.activeElement;
-
-    d.getElementById('pm-idx').textContent = data.idx;
-    d.getElementById('pm-title').textContent = data.title;
-    d.getElementById('pm-url').textContent = data.url;
-    d.getElementById('pm-problem').textContent = data.problem;
-    d.getElementById('pm-solution').textContent = data.solution;
-    d.getElementById('pm-role').textContent = data.role;
-
-    var liveLink = d.getElementById('pm-live');
-    liveLink.href = data.live;
-
-    var pmImg = d.getElementById('pm-img');
-    pmImg.classList.remove('loaded');
-    pmImg.style.display = '';
-    pmImg.alt = 'Preview of ' + data.title;
-    pmImg.src = data.img;
-
-    var pmTags = d.getElementById('pm-tags');
-    pmTags.innerHTML = '';
-    data.stack.forEach(function(tag) {
-      var span = d.createElement('span');
-      span.textContent = tag;
-      pmTags.appendChild(span);
-    });
-
-    d.body.style.overflow = 'hidden';
-    if (typeof pmodal.showModal === 'function') {
-      pmodal.showModal();
-    } else {
-      pmodal.setAttribute('open', '');
-    }
-  }
-
-  function closeProjectModal() {
-    if (!pmodal) return;
-    if (typeof pmodal.close === 'function') {
-      pmodal.close();
-    } else {
-      pmodal.removeAttribute('open');
-    }
-    d.body.style.overflow = '';
-    if (lastTrigger && typeof lastTrigger.focus === 'function') {
-      lastTrigger.focus();
-    }
-  }
-
-  if (pmodal) {
-    d.querySelectorAll('.proj[data-project]').forEach(function(card) {
-      card.addEventListener('click', function(e) {
-        if (e.target.closest('a.demo')) return;
-        openProjectModal(card.getAttribute('data-project'), card.querySelector('.details-btn'));
-      });
-    });
-
-    if (pmClose) {
-      pmClose.addEventListener('click', closeProjectModal);
-    }
-
-    pmodal.addEventListener('click', function(e) {
-      if (e.target === pmodal) {
-        closeProjectModal();
+  /* Direct Project Links on Card Click */
+  d.querySelectorAll('.proj[data-project]').forEach(function(card) {
+    card.addEventListener('click', function(e) {
+      if (e.target.closest('a.demo')) return;
+      var demoLink = card.querySelector('a.demo');
+      if (demoLink && demoLink.href) {
+        window.open(demoLink.href, '_blank', 'noopener');
       }
     });
-
-    pmodal.addEventListener('close', function() {
-      d.body.style.overflow = '';
-      if (lastTrigger && typeof lastTrigger.focus === 'function') {
-        lastTrigger.focus();
-      }
-    });
-  }
+  });
 
   /* Copy-to-Clipboard Pills & Purple Toast */
   var toast = d.getElementById('toast');
@@ -669,38 +540,251 @@
     });
   });
 
-  /* Netlify Contact Form */
+  /* Cache Cleaner Utility & Hard-Refresh System */
+  var cacheBtn = d.getElementById('cache-clean-btn');
+
+  function purgeSiteCache() {
+    showToast('Purging site cache and storage...');
+    try {
+      if ('caches' in window) {
+        caches.keys().then(function(names) {
+          names.forEach(function(name) {
+            caches.delete(name);
+          });
+        });
+      }
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.getRegistrations().then(function(registrations) {
+          registrations.forEach(function(r) {
+            r.unregister();
+          });
+        });
+      }
+      sessionStorage.clear();
+      var securityCooldown = localStorage.getItem('last_contact_submit');
+      localStorage.clear();
+      if (securityCooldown) {
+        localStorage.setItem('last_contact_submit', securityCooldown);
+      }
+    } catch (e) {
+      console.warn('Cache purge info:', e);
+    }
+
+    setTimeout(function() {
+      var cleanUrl = window.location.origin + window.location.pathname + '?cb=' + Date.now() + window.location.hash;
+      window.location.replace(cleanUrl);
+    }, 400);
+  }
+
+  if (cacheBtn) {
+    cacheBtn.addEventListener('click', purgeSiteCache);
+  }
+
+  d.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey && e.shiftKey && (e.key === 'C' || e.key === 'c')) ||
+        (e.altKey && (e.key === 'C' || e.key === 'c'))) {
+      e.preventDefault();
+      purgeSiteCache();
+    }
+  });
+
+  /* Anti-Bot, Anti-DDoS Rate Limiter & Firebase Form Handler */
   if (form && status && send) {
-    form.addEventListener('submit', function(e) {
+    var COOLDOWN_SECONDS = 20; // 20-second anti-spam flood protection
+    var lastSubmitKey = 'last_contact_submit';
+
+    function checkCooldown() {
+      var lastSubmit = parseInt(localStorage.getItem(lastSubmitKey) || '0', 10);
+      var elapsed = Math.floor((Date.now() - lastSubmit) / 1000);
+      if (elapsed < COOLDOWN_SECONDS) {
+        var remaining = COOLDOWN_SECONDS - elapsed;
+        send.disabled = true;
+        status.className = '';
+        status.textContent = 'Anti-spam active: please wait ' + remaining + 's before sending another message.';
+        var timer = setInterval(function() {
+          remaining--;
+          if (remaining <= 0) {
+            clearInterval(timer);
+            send.disabled = false;
+            status.textContent = '';
+          } else {
+            status.textContent = 'Anti-spam active: please wait ' + remaining + 's before sending another message.';
+          }
+        }, 1000);
+        return true;
+      }
+      return false;
+    }
+
+    checkCooldown();
+
+    function withTimeout(promise, ms) {
+      return Promise.race([
+        promise,
+        new Promise(function(_, reject) {
+          setTimeout(function() {
+            reject(new Error('Operation timed out after ' + ms + 'ms'));
+          }, ms);
+        })
+      ]);
+    }
+
+    form.addEventListener('submit', async function(e) {
       e.preventDefault();
 
-      status.className = '';
-      status.textContent = 'Sending...';
+      // 1. Anti-Spam Rate Limiting Check
+      var lastSubmit = parseInt(localStorage.getItem(lastSubmitKey) || '0', 10);
+      var elapsed = Math.floor((Date.now() - lastSubmit) / 1000);
+      if (elapsed < COOLDOWN_SECONDS) {
+        status.className = 'err';
+        status.textContent = 'Anti-spam active: please wait ' + (COOLDOWN_SECONDS - elapsed) + 's.';
+        return;
+      }
 
-      send.disabled = true;
-      send.setAttribute('aria-busy', 'true');
-
-      var body = new URLSearchParams(new FormData(form)).toString();
-
-      fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body
-      })
-      .then(function(response) {
-        if (!response.ok) throw new Error('Form submission failed');
+      // 2. Honeypot Trap Check (silent fake-success to misdirect bots)
+      var botField = form.querySelector('[name="bot-field"]');
+      if (botField && botField.value.trim() !== '') {
         status.className = 'ok';
         status.textContent = 'Message sent. Thank you!';
         form.reset();
-      })
-      .catch(function() {
+        return;
+      }
+
+      // 3. Extract & Validate Form Inputs
+      var nameInput = d.getElementById('name');
+      var emailInput = d.getElementById('email');
+      var messageInput = d.getElementById('message');
+
+      var rawName = nameInput ? nameInput.value.trim() : '';
+      var rawEmail = emailInput ? emailInput.value.trim() : '';
+      var rawMessage = messageInput ? messageInput.value.trim() : '';
+
+      var cleanName = rawName.replace(/[<>]/g, '').slice(0, 100);
+      var cleanEmail = rawEmail.replace(/[<>]/g, '').slice(0, 100);
+      var cleanMessage = rawMessage.replace(/[<>]/g, '').slice(0, 2000);
+
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!cleanName || cleanName.length < 1) {
         status.className = 'err';
-        status.textContent = 'Could not send. Please try again or message me on a social link.';
-      })
-      .then(function() {
-        send.disabled = false;
+        status.textContent = 'Please enter your name.';
+        return;
+      }
+      if (!emailRegex.test(cleanEmail)) {
+        status.className = 'err';
+        status.textContent = 'Please enter a valid email address.';
+        return;
+      }
+      if (!cleanMessage || cleanMessage.length < 2) {
+        status.className = 'err';
+        status.textContent = 'Please enter your message.';
+        return;
+      }
+
+      // 4. Generate reCAPTCHA Enterprise Token (with 2.5s timeout)
+      var recaptchaToken = null;
+      if (window.grecaptcha && window.grecaptcha.enterprise && typeof window.grecaptcha.enterprise.execute === 'function') {
+        try {
+          recaptchaToken = await withTimeout(window.grecaptcha.enterprise.execute('6LfenNErAAAAAN8PVNwE5GoWnlcTDj5Xvhbi6HqW', { action: 'contact_submit' }), 2500);
+        } catch (rcErr) {
+          console.warn('reCAPTCHA notice:', rcErr);
+        }
+      }
+
+      status.className = '';
+      status.textContent = 'Sending message securely...';
+      send.disabled = true;
+      send.setAttribute('aria-busy', 'true');
+
+      var savedToFirebase = false;
+      var lastFbError = null;
+
+      // 5. Save to Firebase Firestore (with 3s timeout)
+      if (window.firebaseServices && window.firebaseServices.db) {
+        var db = window.firebaseServices.db;
+        var contactPayload = {
+          name: cleanName,
+          email: cleanEmail,
+          message: cleanMessage,
+          timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+          read: false
+        };
+        if (recaptchaToken) {
+          contactPayload.recaptchaToken = recaptchaToken;
+        }
+
+        try {
+          await withTimeout(db.collection('contacts').add(contactPayload), 3000);
+          savedToFirebase = true;
+          console.log('✅ Contact submission saved to Firestore contacts collection');
+        } catch (fbErr) {
+          lastFbError = fbErr;
+          console.warn('Firestore primary write notice:', fbErr);
+
+          // Fallback schema attempt (in case published console rules omit email or recaptchaToken)
+          try {
+            var fallbackPayload = {
+              name: cleanName,
+              message: cleanMessage + ' [Reply: ' + cleanEmail + ']',
+              timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+              read: false
+            };
+            if (recaptchaToken) fallbackPayload.recaptchaToken = recaptchaToken;
+            await withTimeout(db.collection('contacts').add(fallbackPayload), 2500);
+            savedToFirebase = true;
+            console.log('✅ Contact submission saved using fallback schema');
+          } catch (fbFallbackErr) {
+            lastFbError = fbFallbackErr || fbErr;
+            console.warn('Firestore fallback write notice:', fbFallbackErr);
+          }
+        }
+      }
+
+      // 6. Dual-Post to Netlify Form (with 3.5s timeout)
+      var formData = new URLSearchParams(new FormData(form));
+      formData.set('name', cleanName);
+      formData.set('email', cleanEmail);
+      formData.set('message', cleanMessage);
+      if (recaptchaToken) formData.set('recaptcha-token', recaptchaToken);
+
+      try {
+        var res = await withTimeout(fetch('/', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+          body: formData.toString()
+        }), 3500);
+
+        if (res.ok || savedToFirebase) {
+          status.className = 'ok';
+          status.textContent = 'Message sent successfully! Thank you.';
+          form.reset();
+          localStorage.setItem(lastSubmitKey, Date.now().toString());
+          checkCooldown();
+        } else {
+          throw new Error('Form submission response not ok');
+        }
+      } catch (postErr) {
+        if (savedToFirebase) {
+          status.className = 'ok';
+          status.textContent = 'Message sent successfully! Thank you.';
+          form.reset();
+          localStorage.setItem(lastSubmitKey, Date.now().toString());
+          checkCooldown();
+        } else {
+          status.className = 'err';
+          var isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' || window.location.protocol === 'file:';
+          if (lastFbError && lastFbError.code === 'permission-denied') {
+            status.textContent = 'Firestore rules blocked creation. Please paste the updated firestore.rules in Firebase Console.';
+          } else if (isLocal && !window.firebaseServices) {
+            status.textContent = 'Local preview: Netlify forms require a live site. Reach out on Discord (@q9vx).';
+          } else {
+            status.textContent = 'Could not send message. Please reach out via Discord (@q9vx) or GitHub.';
+          }
+          console.error('Submission diagnostic:', { firebaseError: lastFbError, netlifyError: postErr });
+          send.disabled = false;
+        }
+      } finally {
         send.removeAttribute('aria-busy');
-      });
+      }
     });
   }
 })();

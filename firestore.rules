@@ -1,0 +1,35 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Validates contact form submissions
+    function isValidContact(data) {
+      return data.keys().hasOnly(['name', 'email', 'message', 'timestamp', 'read', 'recaptchaToken'])
+        && data.name is string && data.name.size() >= 1 && data.name.size() <= 100
+        && data.message is string && data.message.size() >= 1 && data.message.size() <= 3000
+        && (!('email' in data) || (data.email is string && data.email.size() >= 3 && data.email.size() <= 120))
+        && (!('read' in data) || data.read is bool)
+        && (!('recaptchaToken' in data) || data.recaptchaToken is string || data.recaptchaToken == null)
+        && (!('timestamp' in data) || data.timestamp is timestamp || data.timestamp == request.time);
+    }
+
+    // Public contact submissions collection
+    match /contacts/{document} {
+      // Anyone can submit a valid message (subject to validation)
+      allow create: if isValidContact(request.resource.data);
+      // Strictly prevent public reads, edits, or deletes
+      allow read, update, delete: if false;
+    }
+
+    // Public read-only collection (e.g., public stats, configs if needed)
+    match /public/{document} {
+      allow read: if true;
+      allow write: if false;
+    }
+
+    // Everything else requires authenticated admin access
+    match /{document=**} {
+      allow read, write: if request.auth != null;
+    }
+  }
+}

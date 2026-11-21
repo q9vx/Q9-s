@@ -21,25 +21,29 @@ try {
 
 // ---------------------------------------------------------------------
 // App Check — verifies requests are coming from your real site before
-// Firestore accepts them. Uses the same reCAPTCHA Enterprise key that's
-// already loaded on the page for the contact form.
-//
-// NOTE: this only takes effect once you've registered this site key
-// under Firebase Console → Build → App Check → Apps, and it only
-// *enforces* once you flip Firestore to "Enforced" in that same screen.
-// Until then it runs in the background and does nothing harmful.
+// Firestore accepts them. Uses the same reCAPTCHA Enterprise key.
+// Safely deferred on localhost/file: so local testing is never blocked.
 // ---------------------------------------------------------------------
 try {
-  if (firebaseApp && firebase.appCheck) {
+  const isLocalEnv = typeof location !== 'undefined' && (
+    location.hostname === 'localhost' ||
+    location.hostname === '127.0.0.1' ||
+    location.protocol === 'file:'
+  );
+
+  // App Check only initializes in production or when not local
+  if (firebaseApp && firebase.appCheck && !isLocalEnv) {
     const appCheck = firebase.appCheck();
     appCheck.activate(
       new firebase.appCheck.ReCaptchaEnterpriseProvider('6LfenNErAAAAAN8PVNwE5GoWnlcTDj5Xvhbi6HqW'),
       true // auto-refresh the App Check token
     );
-    console.log('✅ App Check activated');
+    console.log('✅ App Check activated in production mode');
+  } else if (isLocalEnv) {
+    console.log('ℹ️ Local development detected — App Check bypassed for local testing.');
   }
 } catch (error) {
-  console.error('❌ App Check activation failed:', error);
+  console.warn('App Check initialization note:', error);
 }
 
 // Initialize services with enhanced error handling
@@ -52,23 +56,6 @@ try {
   }
 } catch (error) {
   console.error('❌ Firebase services initialization failed:', error);
-}
-
-// Enable offline persistence with enhanced error handling
-if (db) {
-  db.enablePersistence()
-    .then(() => {
-      console.log('✅ Offline persistence enabled');
-    })
-    .catch((err) => {
-      if (err.code == 'failed-precondition') {
-        console.log('ℹ️ Multiple tabs open, persistence disabled');
-      } else if (err.code == 'unimplemented') {
-        console.log('ℹ️ Browser does not support persistence');
-      } else {
-        console.error('❌ Persistence error:', err);
-      }
-    });
 }
 
 // Export for use in other scripts
