@@ -1,331 +1,467 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>q9 — Developer Portfolio</title>
-<link rel="stylesheet" href="style.css">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Q9 — Frontend &amp; Full-Stack Developer</title>
+<meta name="description" content="Q9 is a frontend and full-stack developer with a UI/UX eye, building functional, responsive and visually considered web experiences.">
+<meta name="theme-color" content="#07080a">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600&family=JetBrains+Mono:wght@400;500&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
 </head>
-
-<body>
-
-<div id="loading-screen">
-  <div class="loading-content">
-    <div class="loading-spinner"></div>
-    <h2>compiling q9.portfolio<span class="blink-dot">_</span></h2>
+<body id="top">
+<canvas id="bg-canvas" class="bg-canvas" aria-hidden="true"></canvas>
+<div class="loader" id="loader" aria-hidden="true">
+  <div class="loader-in">
+    <div class="loader-logo">Q<span>9</span><i>_</i></div>
+    <div class="loader-bar"><span id="loader-fill"></span></div>
+    <div class="loader-meta">
+      <span id="loader-txt">initializing</span>
+      <span id="loader-pct">0%</span>
+    </div>
   </div>
 </div>
 
-<!-- Editor tab bar acts as the site nav -->
-<nav class="navbar">
-  <div class="tabbar" id="nav-menu">
-    <a href="#home" class="tab active" data-target="home"><i class="fa-regular fa-file-code"></i>index.html</a>
-    <a href="#about" class="tab" data-target="about"><i class="fa-brands fa-js"></i>about.js</a>
-    <a href="#skills" class="tab" data-target="skills"><i class="fa-regular fa-file-lines"></i>skills.json</a>
-    <a href="#projects" class="tab" data-target="projects"><i class="fa-brands fa-markdown"></i>projects.md</a>
-    <a href="#explore" class="tab" data-target="explore"><i class="fa-regular fa-file"></i>explore.txt</a>
-    <a href="#contact" class="tab" data-target="contact"><i class="fa-solid fa-terminal"></i>contact.sh</a>
-  </div>
-  <div class="nav-toggle" id="nav-toggle">
-    <span class="bar"></span>
-    <span class="bar"></span>
-    <span class="bar"></span>
-  </div>
-</nav>
+<a class="skip" href="#main">Skip to content</a>
+<div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
 
-<!-- HOME -->
-<section id="home" class="hero">
-  <div class="hero-grid-bg"></div>
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="Q9 home">Q9<i>_</i></a>
+    <button class="menu-btn" aria-label="Toggle menu" aria-expanded="false" aria-controls="menu"><span></span></button>
+    <nav id="menu" aria-label="Primary">
+      <div class="nav-indicator" aria-hidden="true"></div>
+      <ul>
+        <li><a class="link" href="#home">Home</a></li>
+        <li><a class="link" href="#about">About</a></li>
+        <li><a class="link" href="#skills">Skills</a></li>
+        <li><a class="link" href="#projects">Projects</a></li>
+        <li><a class="link" href="#exploring">Exploring</a></li>
+        <li><a class="link" href="#interests">Interests</a></li>
+        <li><a class="link" href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
 
-  <div class="hero-container">
-    <div class="terminal-window">
-      <div class="terminal-titlebar">
-        <span class="dot dot-red"></span>
-        <span class="dot dot-amber"></span>
-        <span class="dot dot-green"></span>
-        <span class="terminal-path">q9@portfolio — zsh</span>
-      </div>
-      <div class="terminal-body">
-        <p class="term-line"><span class="prompt">➜</span> <span class="term-cmd">whoami</span></p>
-        <div class="hero-identity">
-          <img src="q92.jpg" alt="q9 avatar" class="avatar">
-          <div>
-            <h1 class="hero-title">q9</h1>
-            <p class="hero-roles">Frontend Developer <span class="sep">·</span> Backend Explorer <span class="sep">·</span> System Analyst <span class="sep">·</span> Game Developer</p>
-          </div>
-        </div>
-        <p class="term-line"><span class="prompt">➜</span> <span class="term-cmd">cat mission.txt</span></p>
-        <div class="typing-container">
-          <span class="typing-text" id="typing-text"></span><span class="cursor" id="cursor">▍</span>
-        </div>
+<main id="main">
+
+<section class="hero" id="home">
+  <div class="hero-orb orb-1" aria-hidden="true"></div>
+  <div class="hero-orb orb-2" aria-hidden="true"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <div class="status hero-enter"><b aria-hidden="true"></b>Open to opportunities</div>
+      <h1 class="hero-enter">Hi, I'm <em>Q9</em>.<br>I build for the <span class="grad-text">web.</span></h1>
+      <p class="roles hero-enter" aria-live="polite">
+        <span class="role-prefix">~/role $</span>
+        <span class="role-typed" id="role-typed">Frontend Developer</span><span class="role-caret" aria-hidden="true">_</span>
+      </p>
+      <p class="intro hero-enter">I focus on frontend development and work across backend, databases and deployment. I like building interfaces that are functional, responsive and well designed, and I care about how they look as much as how they work.</p>
+      <div class="cta hero-enter">
+        <a class="btn primary" href="#projects">View Projects
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <a class="btn" href="#contact">Contact Me</a>
       </div>
     </div>
-
-    <div class="hero-buttons">
-      <button class="btn btn-primary" id="main-btn">
-        <span>cd ./about</span>
-        <i class="fas fa-arrow-down"></i>
-      </button>
-      <button class="btn btn-secondary" id="theme-toggle">
-        <i class="fas fa-moon"></i>
-      </button>
-    </div>
-
-    <div class="social-links">
-      <a href="https://www.tiktok.com/@_.q9vx" class="social-link" title="TikTok"><i class="fab fa-tiktok"></i></a>
-      <a href="https://www.youtube.com/@LxstLucas" class="social-link" title="YouTube"><i class="fab fa-youtube"></i></a>
-      <a href="https://www.instagram.com/q9vxx" class="social-link" title="Instagram"><i class="fab fa-instagram"></i></a>
-      <a href="https://github.com/q9vx" class="social-link" title="GitHub"><i class="fab fa-github"></i></a>
-    </div>
-  </div>
-
-  <div class="scroll-indicator">
-    <div class="scroll-arrow"></div>
-  </div>
-</section>
-
-<!-- ABOUT -->
-<section id="about" class="section">
-  <div class="container">
-    <div class="file-header">
-      <span class="file-tag">about.js</span>
-      <span class="file-dim">// who is q9</span>
-    </div>
-
-    <div class="about-content">
-      <div class="code-block about-code">
-        <p class="code-line"><span class="ln">1</span><span class="kw">const</span> <span class="var">q9</span> = {</p>
-        <p class="code-line"><span class="ln">2</span>&nbsp;&nbsp;<span class="prop">role</span>: <span class="str">"Frontend Developer, Backend Explorer, System Analyst, Game Developer"</span>,</p>
-        <p class="code-line"><span class="ln">3</span>&nbsp;&nbsp;<span class="prop">bio</span>: <span class="str">"Crafts clean, responsive interfaces while diving into backend logic and database analysis."</span>,</p>
-        <p class="code-line"><span class="ln">4</span>&nbsp;&nbsp;<span class="prop">drive</span>: <span class="str">"Solving problems through code, exploring system design, and continuously learning new technologies."</span>,</p>
-        <p class="code-line"><span class="ln">5</span>&nbsp;&nbsp;<span class="prop">status</span>: <span class="str">"actively building"</span></p>
-        <p class="code-line"><span class="ln">6</span>};</p>
-      </div>
-
-      <div class="about-details">
-        <div class="detail-item">
-          <div class="detail-icon"><i class="fas fa-code"></i></div>
-          <div class="detail-text">
-            <h3>Frontend Craft</h3>
-            <p>Builds clean, responsive interfaces that feel considered, not just functional.</p>
-          </div>
-        </div>
-        <div class="detail-item">
-          <div class="detail-icon"><i class="fas fa-server"></i></div>
-          <div class="detail-text">
-            <h3>Backend & Data</h3>
-            <p>Explores backend logic and database design, from schemas to system architecture.</p>
-          </div>
-        </div>
-        <div class="detail-item">
-          <div class="detail-icon"><i class="fas fa-gamepad"></i></div>
-          <div class="detail-text">
-            <h3>Game Development</h3>
-            <p>Brings systems thinking into playable spaces, prototyping mechanics and worlds.</p>
-          </div>
-        </div>
-      </div>
+    <div class="avatar hero-enter spotlight" data-tilt role="img" aria-label="Q9 monogram">
+      <small>~/q9</small>
+      <div class="mono">Q<span>9</span></div>
+      <small>frontend.dev</small>
     </div>
   </div>
 </section>
 
-<!-- SKILLS -->
-<section id="skills" class="section section-alt">
-  <div class="container">
-    <div class="file-header">
-      <span class="file-tag">skills.json</span>
-      <span class="file-dim">// technical stack</span>
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>FRONTEND ARCHITECTURE</span><i>✦</i>
+    <span>UI/UX DESIGN</span><i>✦</i>
+    <span>REACT &amp; JAVASCRIPT</span><i>✦</i>
+    <span>8.8M+ GAME QA</span><i>✦</i>
+    <span>RESPONSIVE SYSTEMS</span><i>✦</i>
+    <span>SUPABASE &amp; FIREBASE</span><i>✦</i>
+    <span>PERFORMANCE &amp; ACCESSIBILITY</span><i>✦</i>
+    <span>FRONTEND ARCHITECTURE</span><i>✦</i>
+    <span>UI/UX DESIGN</span><i>✦</i>
+    <span>REACT &amp; JAVASCRIPT</span><i>✦</i>
+    <span>8.8M+ GAME QA</span><i>✦</i>
+    <span>RESPONSIVE SYSTEMS</span><i>✦</i>
+    <span>SUPABASE &amp; FIREBASE</span><i>✦</i>
+    <span>PERFORMANCE &amp; ACCESSIBILITY</span><i>✦</i>
+  </div>
+</div>
+
+<section id="about">
+  <div class="wrap about-grid">
+    <div class="head rv">
+      <div class="eyebrow">01 <span>/</span> about</div>
+      <h2 class="title">Developer who cares about the design side too.</h2>
     </div>
+    <div class="about-body rv">
+      <p>My work sits where design and code meet. I'm a <strong>frontend developer</strong> first, and I'm comfortable going further down the stack with PHP and MySQL, or with hosted backends like Firebase and Supabase, when a project needs it.</p>
+      <p>I build with responsive layouts, clear hierarchy and usable interfaces in mind, and I hold an <strong>NC III certification in Visual Graphic Design</strong>, which shapes how I approach spacing, type and composition. I also use AI-assisted tools as part of my workflow while keeping the decisions mine.</p>
+      <p>I learn by building. Right now that means picking up Python, cloud computing and cybersecurity alongside my frontend work.</p>
 
-    <div class="skills-json">
-      <p class="json-line json-brace">{</p>
-
-      <div class="json-group">
-        <p class="json-line"><span class="ln">01</span><span class="jkey">"frontend"</span>: [</p>
-        <div class="json-tags">
-          <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">JavaScript</span><span class="tag">React</span>
+      <div class="stats-bento">
+        <div class="stat-card spotlight">
+          <div class="stat-num" data-count="8.8" data-suffix="M+">0</div>
+          <div class="stat-label">QA Verified Game Visits</div>
         </div>
-        <p class="json-line"><span class="ln">02</span>],</p>
+        <div class="stat-card spotlight">
+          <div class="stat-num" data-count="18.3" data-suffix="K+">0</div>
+          <div class="stat-label">Studio Community Members</div>
+        </div>
+        <div class="stat-card spotlight">
+          <div class="stat-num" data-count="100" data-suffix="%">0</div>
+          <div class="stat-label">Responsive &amp; Mobile-First</div>
+        </div>
+        <div class="stat-card spotlight">
+          <div class="stat-num static">NC III</div>
+          <div class="stat-label">Visual Graphic Design Certified</div>
+        </div>
       </div>
 
-      <div class="json-group">
-        <p class="json-line"><span class="ln">03</span><span class="jkey">"backend"</span>: [</p>
-        <div class="json-tags">
-          <span class="tag">Node.js</span><span class="tag">Express</span>
-        </div>
-        <p class="json-line"><span class="ln">04</span>],</p>
-      </div>
-
-      <div class="json-group">
-        <p class="json-line"><span class="ln">05</span><span class="jkey">"databases"</span>: [</p>
-        <div class="json-tags">
-          <span class="tag">MySQL</span><span class="tag">Firebase</span><span class="tag">Netlify</span><span class="tag">Vercel</span>
-        </div>
-        <p class="json-line"><span class="ln">06</span>],</p>
-      </div>
-
-      <div class="json-group">
-        <p class="json-line"><span class="ln">07</span><span class="jkey">"tools"</span>: [</p>
-        <div class="json-tags">
-          <span class="tag">Git</span><span class="tag">VS Code</span>
-        </div>
-        <p class="json-line"><span class="ln">08</span>]</p>
-      </div>
-
-      <p class="json-line json-brace">}</p>
+      <ul class="facts">
+        <li><span>FOCUS</span><span>Frontend, with full-stack range</span></li>
+        <li><span>QA &amp; TESTING</span><span>Contributor @ [Q]uantum (8.8M+ Visits)</span></li>
+        <li><span>APPROACH</span><span>Self-learning, build to understand</span></li>
+        <li><span>LOCATION</span><span>Philippines</span></li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- PROJECTS -->
-<section id="projects" class="section">
-  <div class="container">
-    <div class="file-header">
-      <span class="file-tag">projects.md</span>
-      <span class="file-dim"># featured work</span>
+<section id="skills">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="eyebrow">02 <span>/</span> skills</div>
+      <h2 class="title">Tools I work with.</h2>
+      <p class="lead">Grouped by what they're used for, from interface to infrastructure.</p>
     </div>
-
-    <div class="games-grid">
-      <a class="game-card" href="https://sdo-navotasappointments.netlify.app" target="_blank" rel="noopener noreferrer">
-        <div class="game-image"><div class="game-placeholder"><i class="fas fa-calendar-check"></i></div></div>
-        <div class="game-content">
-          <span class="repo-name">Appointment-System-SDO-Navotas <i class="fas fa-arrow-up-right-from-square repo-link-icon"></i></span>
-          <p>A web-based appointment system concept for streamlined scheduling.</p>
-          <div class="game-tags"><span class="tag">Web App</span><span class="tag">Scheduling</span></div>
-        </div>
-      </a>
-
-      <a class="game-card" href="https://loafyhungarianroll.netlify.app/" target="_blank" rel="noopener noreferrer">
-        <div class="game-image"><div class="game-placeholder"><i class="fas fa-bread-slice"></i></div></div>
-        <div class="game-content">
-          <span class="repo-name">LOAFY'S HUNGARIAN ROLL <i class="fas fa-arrow-up-right-from-square repo-link-icon"></i></span>
-          <p>Branding and business presentation site showcasing product identity.</p>
-          <div class="game-tags"><span class="tag">Branding</span><span class="tag">Business</span></div>
-        </div>
-      </a>
-
-      <a class="game-card" href="https://smolmoonva-site.netlify.app/" target="_blank" rel="noopener noreferrer">
-        <div class="game-image"><div class="game-placeholder"><i class="fas fa-user"></i></div></div>
-        <div class="game-content">
-          <span class="repo-name">SMOLMOONVA-SITE <i class="fas fa-arrow-up-right-from-square repo-link-icon"></i></span>
-          <p>Personal portfolio built with modern web technologies.</p>
-          <div class="game-tags"><span class="tag">Portfolio</span></div>
-        </div>
-      </a>
-
-      <a class="game-card" href="https://vaultscripts.vercel.app/" target="_blank" rel="noopener noreferrer">
-        <div class="game-image"><div class="game-placeholder"><i class="fas fa-shield-halved"></i></div></div>
-        <div class="game-content">
-          <span class="repo-name">VAULTSCRIPT <i class="fas fa-arrow-up-right-from-square repo-link-icon"></i></span>
-          <p>A free, secured anti-bypass protection for links — encrypted destinations, real-time alerts, zero cost.</p>
-          <div class="game-tags"><span class="tag">Security</span><span class="tag">Free</span></div>
-        </div>
-      </a>
+    <div class="skill-grid rv">
+      <div class="skill-col spotlight">
+        <h3>FRONTEND <span>01</span></h3>
+        <ul class="chips">
+          <li class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="" loading="lazy" onerror="this.remove()">HTML</li>
+          <li class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="" loading="lazy" onerror="this.remove()">CSS</li>
+          <li class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="" loading="lazy" onerror="this.remove()">JavaScript</li>
+          <li class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg" alt="" loading="lazy" onerror="this.remove()">Bootstrap</li>
+          <li class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="" loading="lazy" onerror="this.remove()">React</li>
+        </ul>
+      </div>
+      <div class="skill-col spotlight">
+        <h3>BACKEND <span>02</span></h3>
+        <ul class="chips">
+          <li class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" alt="" loading="lazy" onerror="this.remove()">PHP</li>
+          <li class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="" loading="lazy" onerror="this.remove()">MySQL</li>
+          <li class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-original.svg" alt="" loading="lazy" onerror="this.remove()">Firebase</li>
+          <li class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/supabase/supabase-original.svg" alt="" loading="lazy" onerror="this.remove()">Supabase</li>
+        </ul>
+      </div>
+      <div class="skill-col spotlight">
+        <h3>TOOLS &amp; PLATFORMS <span>03</span></h3>
+        <ul class="chips">
+          <li class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="" loading="lazy" onerror="this.remove()">Git</li>
+          <li class="chip"><img class="inv" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" alt="" loading="lazy" onerror="this.remove()">GitHub</li>
+          <li class="chip"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/netlify/netlify-original.svg" alt="" loading="lazy" onerror="this.remove()">Netlify</li>
+          <li class="chip"><img class="inv" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vercel/vercel-original.svg" alt="" loading="lazy" onerror="this.remove()">Vercel</li>
+        </ul>
+      </div>
+      <div class="skill-col spotlight">
+        <h3>DESIGN &amp; DEVELOPMENT <span>04</span></h3>
+        <ul class="chips">
+          <li class="chip"><span class="dot" aria-hidden="true"></span>Responsive Web Design</li>
+          <li class="chip"><span class="dot" aria-hidden="true"></span>UI/UX Fundamentals</li>
+          <li class="chip"><span class="dot" aria-hidden="true"></span>AI-Assisted Development</li>
+          <li class="chip"><span class="dot" aria-hidden="true"></span>Visual Design</li>
+          <li class="chip"><span class="dot" aria-hidden="true"></span>NC III Visual Graphic Design</li>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- CURRENTLY EXPLORING + QUOTE -->
-<section id="explore" class="section section-alt">
-  <div class="container">
-    <div class="file-header">
-      <span class="file-tag">explore.txt</span>
-      <span class="file-dim"># currently exploring</span>
+<section id="projects">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="eyebrow">03 <span>/</span> projects</div>
+      <h2 class="title">Selected work.</h2>
+      <p class="lead">Live projects and game contributions. Click a card for build &amp; QA notes.</p>
     </div>
+    <div class="proj-list">
+      <article class="proj rv spotlight" data-tilt data-project="sdo">
+        <div class="thumb">
+          <div class="ph" aria-hidden="true">
+            <div class="bar"><i></i><i></i><i></i></div>
+            <div class="name">Appointment<span>.</span><br>System</div>
+            <div>sdo-navotasappointments.netlify.app</div>
+          </div>
+          <img
+            src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fsdo-navotasappointments.netlify.app%2F?w=800&h=450"
+            alt="Preview of SDO Navotas Online Appointment System"
+            loading="lazy"
+            decoding="async"
+            onload="this.classList.add('loaded')"
+            onerror="this.remove()"
+          >
+        </div>
+        <div class="proj-body">
+          <div class="proj-top"><h3>Appointment-System-SDO-Navotas</h3><span class="idx">01</span></div>
+          <p>An online appointment system for SDO Navotas, built to make booking simpler to follow.</p>
+          <div class="tags"><span>Web app</span><span>Scheduling</span></div>
+          <div class="proj-actions">
+            <button class="details-btn" type="button">Case Study</button>
+            <a class="demo" href="https://sdo-navotasappointments.netlify.app/" target="_blank" rel="noopener">Live Demo <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5"/></svg></a>
+          </div>
+        </div>
+      </article>
 
-    <ul class="explore-list">
-      <li><span class="ln">01</span><i class="fa-regular fa-square"></i> Advanced React patterns and performance optimization</li>
-      <li><span class="ln">02</span><i class="fa-regular fa-square"></i> API integration and backend scalability</li>
-      <li><span class="ln">03</span><i class="fa-regular fa-square"></i> Data visualization and analytics for smarter insights</li>
-      <li><span class="ln">04</span><i class="fa-regular fa-square"></i> Game development</li>
+      <article class="proj rv spotlight" data-tilt data-project="loafys">
+        <div class="thumb">
+          <div class="ph" aria-hidden="true">
+            <div class="bar"><i></i><i></i><i></i></div>
+            <div class="name">Loafy's<span>.</span><br>Hungarian Roll</div>
+            <div>loafyhungarianroll.netlify.app</div>
+          </div>
+          <img
+            src="https://s0.wp.com/mshots/v1/https%3A%2F%2Floafyhungarianroll.netlify.app%2F?w=800&h=450"
+            alt="Preview of Loafy's Hungarian Roll business website"
+            loading="lazy"
+            decoding="async"
+            onload="this.classList.add('loaded')"
+            onerror="this.remove()"
+          >
+        </div>
+        <div class="proj-body">
+          <div class="proj-top"><h3>LOAFY'S HUNGARIAN ROLL</h3><span class="idx">02</span></div>
+          <p>A responsive website for a food business, presenting the product and brand online.</p>
+          <div class="tags"><span>Business site</span><span>Responsive</span></div>
+          <div class="proj-actions">
+            <button class="details-btn" type="button">Case Study</button>
+            <a class="demo" href="https://loafyhungarianroll.netlify.app/" target="_blank" rel="noopener">Live Demo <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj rv spotlight" data-tilt data-project="smolmoonva">
+        <div class="thumb">
+          <div class="ph" aria-hidden="true">
+            <div class="bar"><i></i><i></i><i></i></div>
+            <div class="name">Smolmoonva<span>.</span><br>Site</div>
+            <div>smolmoonva-site.netlify.app</div>
+          </div>
+          <img
+            src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fsmolmoonva-site.netlify.app%2F?w=800&h=450"
+            alt="Preview of Smolmoonva personal brand website"
+            loading="lazy"
+            decoding="async"
+            onload="this.classList.add('loaded')"
+            onerror="this.remove()"
+          >
+        </div>
+        <div class="proj-body">
+          <div class="proj-top"><h3>SMOLMOONVA-SITE</h3><span class="idx">03</span></div>
+          <p>A personal brand website with a focus on visual presentation.</p>
+          <div class="tags"><span>Personal site</span><span>Visual design</span></div>
+          <div class="proj-actions">
+            <button class="details-btn" type="button">Case Study</button>
+            <a class="demo" href="https://smolmoonva-site.netlify.app/" target="_blank" rel="noopener">Live Demo <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj rv spotlight" data-tilt data-project="vaultscript">
+        <div class="thumb">
+          <div class="ph" aria-hidden="true">
+            <div class="bar"><i></i><i></i><i></i></div>
+            <div class="name">Vault<span>_</span>Script</div>
+            <div>vaultscripts.vercel.app</div>
+          </div>
+          <img
+            src="https://s0.wp.com/mshots/v1/https%3A%2F%2Fvaultscripts.vercel.app%2F?w=800&h=450"
+            alt="Preview of VaultScript web application"
+            loading="lazy"
+            decoding="async"
+            onload="this.classList.add('loaded')"
+            onerror="this.remove()"
+          >
+        </div>
+        <div class="proj-body">
+          <div class="proj-top"><h3>VAULTSCRIPT</h3><span class="idx">04</span></div>
+          <p>A web project deployed on Vercel, built around scripts and a clean interface.</p>
+          <div class="tags"><span>Web app</span><span>Vercel</span></div>
+          <div class="proj-actions">
+            <button class="details-btn" type="button">Case Study</button>
+            <a class="demo" href="https://vaultscripts.vercel.app/" target="_blank" rel="noopener">Live Demo <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5"/></svg></a>
+          </div>
+        </div>
+      </article>
+
+      <article class="proj rv spotlight" data-tilt data-project="quantum">
+        <div class="thumb">
+          <div class="ph" aria-hidden="true">
+            <div class="bar"><i></i><i></i><i></i></div>
+            <div class="name">[Q]uantum<span>.</span><br>Contributor</div>
+            <div>roblox.com/communities/36030195</div>
+          </div>
+          <img
+            src="assets/quantum.webp"
+            alt="Contributor Rank in [Q]uantum verified Roblox community"
+            loading="lazy"
+            decoding="async"
+            onload="this.classList.add('loaded')"
+            onerror="this.remove()"
+          >
+        </div>
+        <div class="proj-body">
+          <div class="proj-top"><h3>[Q]uantum — Game Contributor &amp; QA</h3><span class="idx">05</span></div>
+          <p>Official Contributor &amp; QA game tester for a verified Roblox studio community (18.3K+ members) with titles exceeding 8.8M+ visits.</p>
+          <div class="tags"><span>Game Testing / QA</span><span>8.8M+ Visits</span><span>Roblox</span></div>
+          <div class="proj-actions">
+            <button class="details-btn" type="button">Case Study</button>
+            <a class="demo" href="https://www.roblox.com/communities/36030195/Q-uantum#!/about" target="_blank" rel="noopener">Community <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5"/></svg></a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="exploring">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="eyebrow">04 <span>/</span> currently exploring</div>
+      <h2 class="title">What I'm learning now.</h2>
+      <p class="lead">Areas I'm actively studying. These are learning in progress, not claims of expertise.</p>
+    </div>
+    <ul class="learn">
+      <li class="rv"><span class="n">01</span><h3>Python Programming</h3><p>Building fundamentals: variables, data types, input and output, and control flow.</p><span class="st"><b aria-hidden="true"></b>Learning</span></li>
+      <li class="rv"><span class="n">02</span><h3>Cloud Computing</h3><p>Understanding how modern applications are hosted, deployed and scaled.</p><span class="st"><b aria-hidden="true"></b>Exploring</span></li>
+      <li class="rv"><span class="n">03</span><h3>Cybersecurity</h3><p>Learning how systems are protected and how to build with security in mind.</p><span class="st"><b aria-hidden="true"></b>Exploring</span></li>
     </ul>
+  </div>
+</section>
 
-    <div class="quote-block">
-      <p>/* Code is not just logic — it's creativity expressed in syntax. */</p>
+<section id="interests">
+  <div class="wrap">
+    <div class="head rv">
+      <div class="eyebrow">05 <span>/</span> interests</div>
+      <h2 class="title">Beyond the code.</h2>
+      <p class="lead">What keeps me curious when I'm away from the editor.</p>
+    </div>
+    <div class="int-grid rv">
+      <div class="int spotlight"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3"/></svg><div><h3>FPS Gaming</h3><p>Valorant, Counter-Strike 2, CrossFire Philippines</p></div></div>
+      <div class="int spotlight"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-7-6.2-7-11a7 7 0 0114 0c0 4.8-7 11-7 11z"/><circle cx="12" cy="10" r="2.5"/></svg><div><h3>Travel</h3><p>Exploring new places</p></div></div>
+      <div class="int spotlight"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h6a3 3 0 013 3v12a2 2 0 00-2-2H4zM20 5h-6a3 3 0 00-3 3v12a2 2 0 012-2h7z"/></svg><div><h3>Self-learning</h3><p>Personal development, one project at a time</p></div></div>
+      <div class="int spotlight"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l4-1L19 8l-3-3L5 16zM14 7l3 3"/></svg><div><h3>Graphic Design</h3><p>Creative exploration and visual work</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT -->
-<section id="contact" class="section">
-  <div class="container">
-    <div class="file-header">
-      <span class="file-tag">contact.sh</span>
-      <span class="file-dim"># get in touch</span>
+<section id="contact">
+  <div class="wrap contact-grid">
+    <div class="rv">
+      <div class="eyebrow">06 <span>/</span> contact</div>
+      <h2 class="title">Let's talk.</h2>
+      <p class="lead">Have a project, question or idea? Send a message, or copy my handle to reach out directly.</p>
+
+      <div class="copy-bar" aria-label="Quick copy contact handles">
+        <button class="copy-pill" type="button" data-copy="q9vx" data-label="Discord handle">
+          <span class="copy-dot" aria-hidden="true"></span>
+          <span>Discord: <strong>q9vx</strong></span>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8" height="8" rx="1.5"/><path d="M3 11V3.5A1.5 1.5 0 014.5 2H11"/></svg>
+        </button>
+        <button class="copy-pill" type="button" data-copy="@q9vx" data-label="Handle">
+          <span class="copy-dot" aria-hidden="true"></span>
+          <span>Handle: <strong>@q9vx</strong></span>
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="5" width="8" height="8" rx="1.5"/><path d="M3 11V3.5A1.5 1.5 0 014.5 2H11"/></svg>
+        </button>
+      </div>
+
+      <div class="socials">
+        <a href="https://github.com/q9vx" target="_blank" rel="noopener"><span>GitHub</span><span>@q9vx</span></a>
+        <a href="https://www.instagram.com/q9vxx" target="_blank" rel="noopener"><span>Instagram</span><span>@q9vxx</span></a>
+        <a href="https://www.tiktok.com/@_.q9vx" target="_blank" rel="noopener"><span>TikTok</span><span>@_.q9vx</span></a>
+        <a href="https://www.youtube.com/@LxstLucas" target="_blank" rel="noopener"><span>YouTube</span><span>@LxstLucas</span></a>
+      </div>
     </div>
 
-    <div class="contact-content">
-      <div class="contact-info">
-        <p class="term-line"><span class="prompt">➜</span> <span class="term-cmd">echo "let's connect"</span></p>
-        <p>Whether you want to collaborate on a project, discuss game dev, or just say hello — I'd love to hear from you.</p>
-        <div class="contact-socials">
-          <a href="https://github.com/q9vx" class="contact-social"><i class="fab fa-github"></i> github.com/q9vx</a>
-          <a href="https://www.instagram.com/q9vxx" class="contact-social"><i class="fab fa-instagram"></i> @q9vxx</a>
-          <a href="https://www.tiktok.com/@_.q9vx" class="contact-social"><i class="fab fa-tiktok"></i> @_.q9vx</a>
-          <a href="https://www.youtube.com/@LxstLucas" class="contact-social"><i class="fab fa-youtube"></i> LxstLucas</a>
+    <form class="rv" name="contact" method="POST" action="/" data-netlify="true" netlify-honeypot="bot-field" id="cform">
+      <input type="hidden" name="form-name" value="contact">
+      <p class="hp"><label>Don't fill this out <input name="bot-field" tabindex="-1" autocomplete="off"></label></p>
+      <div class="form-row">
+        <label for="name">Name<input id="name" name="name" type="text" placeholder="Your name" autocomplete="name" required></label>
+        <label for="email">Email <span class="opt">(for reply)</span><input id="email" name="email" type="email" placeholder="you@example.com" autocomplete="email" required></label>
+      </div>
+      <label for="message">Message<textarea id="message" name="message" placeholder="What would you like to talk about?" required></textarea></label>
+      <div class="form-foot">
+        <button class="btn primary" type="submit" id="send">Send message
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+        <span id="fstatus" role="status" aria-live="polite"></span>
+      </div>
+    </form>
+  </div>
+</section>
+
+</main>
+
+<dialog class="pmodal" id="pmodal" aria-labelledby="pm-title">
+  <div class="pmodal-box">
+    <div class="pmodal-head">
+      <div>
+        <span class="pmodal-idx" id="pm-idx">PROJECT 01</span>
+        <h3 id="pm-title">Project Title</h3>
+      </div>
+      <button class="pmodal-close" type="button" id="pm-close" aria-label="Close project details">
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4l8 8M12 4l-8 8"/></svg>
+      </button>
+    </div>
+
+    <div class="pmodal-preview">
+      <img id="pm-img" src="" alt="" onload="this.classList.add('loaded')" onerror="this.style.display='none'">
+      <span class="pmodal-url" id="pm-url"></span>
+    </div>
+
+    <div class="pmodal-body">
+      <div class="pmodal-grid">
+        <div class="pmodal-block">
+          <h4>THE PROBLEM</h4>
+          <p id="pm-problem"></p>
+        </div>
+        <div class="pmodal-block">
+          <h4>THE SOLUTION</h4>
+          <p id="pm-solution"></p>
         </div>
       </div>
 
-      <div class="contact-form">
-        <form id="contact-form">
-          <div class="form-group">
-            <label for="name">// name</label>
-            <input type="text" id="name" name="name" placeholder="Your name" required>
-          </div>
-          <div class="form-group">
-            <label for="message">// message</label>
-            <textarea id="message" name="message" placeholder="Your message" rows="5" required></textarea>
-          </div>
-
-          <!-- Honeypot: hidden from real visitors, bots tend to fill every field -->
-          <div class="form-group form-hp" aria-hidden="true">
-            <label for="website">Website</label>
-            <input type="text" id="website" name="website" tabindex="-1" autocomplete="off">
-          </div>
-
-          <button type="submit" class="btn btn-primary">
-            <span>send()</span>
-            <i class="fas fa-paper-plane"></i>
-          </button>
-          <p class="form-status" id="form-status"></p>
-        </form>
+      <div class="pmodal-stack">
+        <h4>TECH STACK &amp; HIGHLIGHTS</h4>
+        <div class="tags" id="pm-tags"></div>
       </div>
     </div>
-  </div>
-</section>
 
-<footer class="footer">
-  <div class="container">
-    <div class="footer-content">
-      <div class="footer-info">
-        <h3>q9</h3>
-        <p>Frontend · Backend · Systems · Games</p>
-      </div>
-      <div class="footer-socials">
-        <a href="https://www.tiktok.com/@_.q9vx" class="footer-social"><i class="fab fa-tiktok"></i></a>
-        <a href="https://www.youtube.com/@LxstLucas" class="footer-social"><i class="fab fa-youtube"></i></a>
-        <a href="https://www.instagram.com/q9vxx" class="footer-social"><i class="fab fa-instagram"></i></a>
-        <a href="https://github.com/q9vx" class="footer-social"><i class="fab fa-github"></i></a>
-      </div>
+    <div class="pmodal-foot">
+      <span class="pmodal-role" id="pm-role"></span>
+      <a class="btn primary" id="pm-live" href="#" target="_blank" rel="noopener">Open Live Site
+        <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 11l6-6M6 5h5v5"/></svg>
+      </a>
     </div>
   </div>
+</dialog>
+
+<div class="toast" id="toast" role="status" aria-live="polite" aria-atomic="true">
+  <span class="toast-icon" aria-hidden="true">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5l3 3 6-6.5"/></svg>
+  </span>
+  <span id="toast-msg">Copied to clipboard</span>
+</div>
+
+<footer>
+  <div class="wrap"><span>© <span id="yr"></span> Q9</span><a href="#top">Back to top ↑</a></div>
 </footer>
 
-<!-- Firebase SDK (Compatibility mode) -->
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-
-<!-- reCAPTCHA v3 -->
-<script src="https://www.google.com/recaptcha/enterprise.js?render=6LfenNErAAAAAN8PVNwE5GoWnlcTDj5Xvhbi6HqW"></script>
-
-<!-- Firebase configuration -->
-<script src="firebase-config.js"></script>
-
-<script src="script.js"></script>
+<script src="script.js" defer></script>
 </body>
 </html>
